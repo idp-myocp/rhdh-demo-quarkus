@@ -1,0 +1,49 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "rhdh-demo-quarkus"
+  description: "Cool quarkus application"
+  annotations:
+    backstage.io/kubernetes-id: rhdh-demo-quarkus
+    backstage.io/kubernetes-namespace: rhdh-demo-quarkus-dev
+    argocd/app-name: rhdh-demo-quarkus-dev
+    github.com/project-slug: idp-myocp/rhdh-demo-quarkus
+    backstage.io/techdocs-ref: url:https://github.com/idp-myocp/rhdh-demo-quarkus
+    jira/project-key: ISSUEBD
+    sonarqube.org/project-key: rhdh-demo-quarkus
+    jfrog-artifactory/image-name: rhdh-demo-quarkus
+    # nexus-repository-manager/docker.image-name: rhdh-demo-quarkus
+
+  tags:
+    - java
+    - quarkus
+    - ghactions
+    - argocd
+    - artifactory
+
+  links:
+    - url: https://devspaces.apps.home.myocp.net/#https://github.com/idp-myocp/rhdh-demo-quarkus?che-editor=che-incubator/che-code/insiders&devfilePath=.devfile-vscode.yaml
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: https://devspaces.apps.home.myocp.net/#https://github.com/idp-myocp/rhdh-demo-quarkus?che-editor=che-incubator/che-idea/latest&devfilePath=.devfile-intellij.yaml
+      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+      icon: web
+spec:
+  type: service
+  system: system:default/janus-idp
+  lifecycle: production
+  owner: "group:default/janus-authors"
+  providesApis:
+    - "rhdh-demo-quarkus"
+---
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: "rhdh-demo-quarkus"
+  description: "Cool quarkus application"
+spec:
+  type: openapi
+  lifecycle: production
+  owner: "group:default/janus-authors"
+  definition:
+    $text: ./openapi.yaml
